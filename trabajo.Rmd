@@ -71,3 +71,5 @@ myAnova(modelo)
 ```
 
 Haciendo el análisis de la tabla ANOVA se concluye que el modelo de regresión sí es significativo, puesto que su valor-p es menor a 0.05(2.82658e-09). Rechazando así $H_0$, concluyendo que el riesgo de infección depende de al menos una de las variables predictoras del modelo.
+\subsection{Cálculo de $R^2$}
+Para el cálculo de $R^2$ utilizaremos $R^2=\frac{SSR}{SST}$ y obtendremos un valor de $0.4743$, implica que un 47.43% de la variabilidad de la variable de respuesta es explicada por la regresión
