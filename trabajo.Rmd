@@ -1,10 +1,11 @@
 ---
 header-includes:
-- \usepackage{longtable}
-- \usepackage[utf8]{inputenc}
-- \usepackage[spanish]{babel}\decimalpoint
-- \setlength{\parindent}{1.25cm}
-- \usepackage{amsmath}
+  - \usepackage{longtable}
+  - \usepackage[utf8]{inputenc}
+  - \usepackage[spanish]{babel}\decimalpoint
+  - \setlength{\parindent}{1.25cm}
+  - \usepackage{amsmath}
+  - \usepackage{import}
 output:
   pdf_document:
     number_sections: true
@@ -14,38 +15,40 @@ geometry: margin = 1in
 language: "es"
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = F, fig.align = 'center',  message = F, fig.pos = "H")
 library(tidyverse)
 library(knitr)
 library(kableExtra)
 ```
 
-\input{titlepage}
+\import{assets/}{titlepage.tex}
 \thispagestyle{empty}
 \tableofcontents
 \listoffigures
 \listoftables
 
-```{r}
+```{r, include = FALSE}
 if(!require(leaps)){install.packages("leaps"); library(leaps)}
-source("funciones.R")
-base <- read.table("base_32.txt", header = T)#Cargar base de datos
-
+source("scripts/funciones.R", local = knitr::knit_global())
+base <- read.table("./data/base_32.txt", header = T) # Cargar base de datos
 ```
+
 \newpage
 \section{Ejercicio 1}
 Se tiene del texto que se desea estimar un modelo de regresión multiple que explique el riesgo de infección en términos de todas las variables predictoras, este modelo tendrá la forma
 $$y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} +  \beta_3x_{i3} + \beta_4x_{i4} +\beta_5x_{i5} + \varepsilon_i, \ \varepsilon_i \stackrel{iid}{\sim} N(0, \sigma^2);  \ 1 \leq i \leq 76$$
 \subsection{Estimación del modelo, significancia e interpretación de coeficientes}
-__Estimación del modelo__
+**Estimación del modelo**
+
 ```{r}
 modelo <- lm(Y ~ ., base)
 summary(modelo)$coefficients
 ```
+
 De esta tabla se obtienen los estimadores para los diferentes parametros que utilizamos en el modelo.
 $$\hat{y}_i=0.6025+0.3102x_{i1}+0.0420x_{i2}-0.0003x_{i3}-0.0026x_{i4}+0.0042x_{i5}$$
-__Significancia e interpretación de coeficientes__
+**Significancia e interpretación de coeficientes**
 Para esta prueba utilizaremos el siguiente juego de hipótesis
 $$H_0:\beta_j=0\ vs\ H_1:\beta_j\ne0;j=0,..,5$$
 De la tabla obtenemos los valores p para cada uno de los parámetros, y usando un $\alpha=0.05$ llegamos a estas conclusiones:\newline
@@ -62,7 +65,9 @@ Para probar la significancia de la regresión estableceremos las siguientes hip�
 $$H_0:\beta_1 = \beta_2 = \beta_3 = \beta_4 = \beta_5 = 0, \ vs$$
 $$H_1:\ algún\ \beta_j\ne0,j=1,2,...,5$$
 y utilizaremos la siguiente tabla ANOVA
+
 ```{r}
 myAnova(modelo)
 ```
+
 Haciendo el análisis de la tabla ANOVA se concluye que el modelo de regresión sí es significativo, puesto que su valor-p es menor a 0.05(2.82658e-09). Rechazando así $H_0$, concluyendo que el riesgo de infección depende de al menos una de las variables predictoras del modelo.
