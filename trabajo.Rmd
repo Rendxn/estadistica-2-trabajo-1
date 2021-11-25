@@ -50,7 +50,10 @@ $$H_0:\beta_j=0\ vs\ H_1:\beta_j\ne0;j=0,..,5$$
 De la tabla obtenemos los valores p para cada uno de los parámetros, y usando un $\alpha=0.05$ llegamos a estas conclusiones:\newline
 $\beta_0$ tiene un valor-p muy por encima de 0.05, por tanto no se rechaza la hipotesis nula, dejando así que no es significativo; por otro lado no se puede interpretar\newline
 $\beta_1$ tiene un valor-p menor que 0.05, entonces es significativo, y se puede interpretar como el aumento en Y en promedio 0.310 unidades cuando la duración promedio de la estadía de todos los pacientes en el hospital aumenta una unidad, siempre que las otras variables de predicción se tengan constantes.\newline
-$\beta_2$ tiene un valor-p menor que 0.05, entonces es significativo y se puede interpretar como el aumento en Y en promedio 0.042 unidades cada que $X_2$ aumenta en una unidad, siempre que las otras variables de predicción se tengan constantes 
+$\beta_2$ tiene un valor-p menor que 0.05, entonces es significativo y se puede interpretar como el aumento en Y en promedio 0.042 unidades cada que $X_2$ aumenta en una unidad, siempre que las otras variables de predicción se tengan constantes \newline
+$\beta_3$ tiene un valor-p por encima de 0.05, por tanto no se rechaza la hipotesis nula, dejando así que no es significativo; por otro lado no se puede interpretar\newline
+$\beta_4$ tiene un valor-p por encima de 0.05, por tanto no se rechaza la hipotesis nula, dejando así que no es significativo; por otro lado no se puede interpretar\newline
+$\beta_5$ tiene un valor-p por encima de 0.05, por tanto no se rechaza la hipotesis nula, dejando así que no es significativo; por otro lado no se puede interpretar\newline
 
 \subsection{Significancia de la regresión}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.11.24)  24 NOV 2021 21:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.11.24)  24 NOV 2021 22:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -536,7 +536,7 @@ LaTeX Info: Redefining \nameref on input line 88.
 LaTeX Info: Redefining \. on input line 88.
 LaTeX Info: Redefining \% on input line 88.
 (./titlepage.tex
-<logounal.png, id=20, 513.92pt x 281.05pt>
+<logounal.png, id=16, 513.92pt x 281.05pt>
 File: logounal.png Graphic file (type png)
 <use logounal.png>
 Package pdftex.def Info: logounal.png  used on input line 44.
@@ -601,33 +601,38 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
                    \relax 
 l.100 \newpage
                [1]
-Underfull \hbox (badness 10000) in paragraph at lines 139--141
+Underfull \hbox (badness 10000) in paragraph at lines 127--149
+
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 152--154
 
  []
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 142.
+LaTeX Warning: Command \' invalid in math mode on input line 155.
 
-[2] [3] (./trabajo.aux
+[3] (./trabajo.aux
 LaTeX Info: Redefining \. on input line 25.
 LaTeX Info: Redefining \% on input line 25.
 )
 Package rerunfilecheck Info: File `trabajo.out' has not changed.
-(rerunfilecheck)             Checksum: 5443B2722DC338AFE1789F6179BD51CC;995.
+(rerunfilecheck)             Checksum: 3CF4119654D8CE98F7EC7F5749F0CE7A;744.
  ) 
 Here is how much of TeX's memory you used:
- 13541 strings out of 480313
- 215850 string characters out of 5895779
+ 13539 strings out of 480313
+ 215820 string characters out of 5895779
  522445 words of memory out of 5000000
- 31151 multiletter control sequences out of 15000+600000
+ 31150 multiletter control sequences out of 15000+600000
  434419 words of font info for 52 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,5n,63p,476b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,5n,63p,476b,394s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/josan/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/josan/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/josan/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/josan/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}<c:/Users/josan/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/josan/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/Users/josan/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/Users/josan/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/josan/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/josan/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/josan/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/josan/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on trabajo.pdf (4 pages, 209591 bytes).
+Output written on trabajo.pdf (4 pages, 209279 bytes).
 PDF statistics:
- 100 PDF objects out of 1000 (max. 8388607)
- 74 compressed objects within 1 object stream
- 11 named destinations out of 1000 (max. 500000)
- 38 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 95 PDF objects out of 1000 (max. 8388607)
+ 69 compressed objects within 1 object stream
+ 10 named destinations out of 1000 (max. 500000)
+ 30 words of extra memory for PDF output out of 10000 (max. 10000000)
 
