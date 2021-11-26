@@ -1,0 +1,10 @@
+---
+title: "Ejercicio4"
+author: "YO"
+date: "25/11/2021"
+output: pdf_document
+---
+
+\newpage
+\section{Ejercicio 4}
+
