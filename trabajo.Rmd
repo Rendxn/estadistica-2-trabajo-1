@@ -73,6 +73,16 @@ myAnova(modelo)
 Haciendo el análisis de la tabla ANOVA se concluye que el modelo de regresión sí es significativo, puesto que su valor-p es menor a 0.05(2.82658e-09). Rechazando así $H_0$, concluyendo que el riesgo de infección depende de al menos una de las variables predictoras del modelo.
 \subsection{Cálculo de $R^2$}
 Para el cálculo de $R^2$ utilizaremos $R^2=\frac{SSR}{SST}$ y obtendremos un valor de $0.4743$, implica que un 47.43% de la variabilidad de la variable de respuesta es explicada por la regresión
+\section{Ejercicio 2}
+Las variables que tuvieron mayor valor P son:$X_3,X_4,X_5$\newline
+Para probar la significancia de este subconjunto de parametros, se utilizará el siguiente juego de hipotesis:$$H_0:\beta_3=\beta_4=\beta_5=0,vs\\H_1:algún\ \beta_j\ne0\ ,j=3,4,5$$ Para esto definiremos lo siguiente
+$$MF=\beta_0+\beta_1X_1+\beta_2X_2+\beta_3X_3+\beta_4X_4+\beta_5X_5$$
+$$MR=\beta_0+\beta_1X_1+\beta_2X_2$$
+De los cuales se obtiene $SSR(\beta_3,\beta_4,\beta_5|\beta_0,\beta_1,\beta_2)=SSE(\beta_0,\beta_1,\beta_2)-SSE(\beta_0,\beta_1,\beta_2,\beta_3,\beta_4,\beta_5)$ cuyas Sumas cuadráticas de errores se obtienen de la tabla de todas las regresiones posibles dando un resultado de $$SSR(\beta_3,\beta_4,\beta_5|\beta_0,\beta_1,\beta_2)=74.534-70.063=4.471$$ Por otro lado, se tiene que $MSR=\frac{SSR(\beta_3,\beta_4,\beta_5|\beta_0,\beta_1,\beta_2)}{G.L.}=\frac{4.471}{3}=1.490$ para así hallar el estadístico de prueba que usaremos, que es: $$F_0=\frac{MSR(\beta_3,\beta_4,\beta_5|\beta_0,\beta_1,\beta_2)}{MSE(\beta_0,\beta_1,\beta_2,\beta_3,\beta_4,\beta_5)}$$ de la muestra se tiene que $$MSE(\beta_0,\beta_1,\beta_2,\beta_3,\beta_4,\beta_5)=\frac{SSE}{n-p}=\frac{70.063}{76-6}=1.000$$
+entonces se tiene que: $F_0=\frac{4.471}{1}=4.471$ y se rechazará $H_0$ si $F_0>f_{0.05,3,70}$;$f_{0.05,3,70}=0.1167<F_0$ por tanto se rechaza $H_0$ y se concluye que al menos uno de estos parametros es signifactivo para la regresión
+
+
+
 
 ```{r, child=c('Ejercicio4.Rmd')}
 
