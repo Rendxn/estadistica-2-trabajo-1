@@ -41,3 +41,4 @@ vignettes/*.pdf
 #Logs y pdf
 *.log 
 *.pdf
+!trabajo.pdf
