@@ -1,10 +1,124 @@
 ---
-title: "Ejercicio4"
-author: "YO"
-date: "25/11/2021"
+title: "Ejercicio 4"
+author: "Tatiana"
+date: "26/11/2021"
 output: pdf_document
 ---
 
-\newpage
+
 \section{Ejercicio 4}
 
+
+```{r, include = FALSE}
+if(!require(leaps)){install.packages("leaps"); library(leaps)}
+source("scripts/funciones.R", local = knitr::knit_global())
+base <- read.table("./data/base_32.txt", header = T) # Cargar base de datos
+```
+
+```{r, include=FALSE}
+
+modelo <- lm(Y ~ .,data= base)
+```
+
+Para la validación de los supuestos de los errores, asumimos que se cumple que los errores del modelo tienen media cero y que son independientes.
+
+\subsection{Normalidad}
+
+Se verifica la normalidad del modelo con el test de Shapiro Wilk:
+
+```{r, fig.cap="Análisis de normalidad", echo=FALSE}
+myQQnorm(modelo)
+```
+
+
+En esta gráfica observamos que en la escala normal los datos se ajustan por una línea recta, además, la Prueba de Shapiro-Wilk nos arroja un valor p de 0.6564, por lo que no se rechaza la hipótesis de que los residuales vienen de una población normal.
+
+
+\subsection{Varianza constante y valores atípicos}
+
+Ahora se evalúa el supuesto de varianza constante con  un gráfico de residuales vs valores ajustados de la respuesta:
+
+```{r, echo=FALSE}
+# Cálculo de residuales estudentizados y valores ajustados
+res.stud <- round(rstandard(modelo), 4)
+yhat <- modelo$fitted.values
+```
+
+
+```{r, fig.cap="Análisis de variabilidad", echo=FALSE}
+# Gráfico de Residuales estudentizados vs. Valores ajustados
+plot(yhat, res.stud, xlab = "Riesgo de infección ajustado", ylab = "Residuales estudentizados",  ylim = c(-3.5, 3.5), pch = 16)
+abline(h = 0, lty = 2, lwd = 2, col = 2)
+abline(h = 3)
+abline(h = -3)
+```
+
+
+
+
+
+
+
+
+Del anterior gráfico se puede observar que los residuales del modelo no cumplen con el supuesto de varianza constante.
+Por otro lado, esta gráfica indica que existe una observación atípica, el residual estudentizado es tal que su valor absoluto es mayor que 3.
+
+
+\subsection{Tabla de valores para el diagnóstico de valores extremos}
+
+```{r, echo=FALSE}
+#Tabla de valores para el diagnóstico de valores extremos
+
+# Cálculo de errores estándar de los valores ajustados
+se.yhat <- predict(modelo, se.fit = T)$se.fit
+# Residuales crudos del modelo
+residuals <- round(modelo$residuals, 4)
+# Distancias de Cook
+Cooks.D <- round(cooks.distance(modelo), 4)
+# Valores de la diagonal de la matriz H
+hii.value <- round(hatvalues(modelo), 4)
+# Dffits
+Dffits <- round(dffits(modelo), 4)
+# Tabla de diagnósticos
+diagnostico <- data.frame(Y = base$Y, yhat, se.yhat, residuals, res.stud,
+Cooks.D, hii.value, Dffits)
+
+```
+
+\newpage
+\subsection{Análisis de balanceo}
+
+Para identificar los puntos de balanceo tenemos en cuenta que una observación es un punto de balanceo si hii > 2p/n.
+En este caso, tenemos que hii > 2(6/80) = 0.15.
+
+```{r, fig.cap="Análisis de balanceo", echo=FALSE}
+with(diagnostico, plot(hii.value,
+                        xlab = "Observación", ylab = "hii",pch = 16))
+abline(h = 2*6/80, col = "red")
+```
+
+
+
+
+Analizamos la columna de hii.value de valores de la diagonal de la matriz H y nos damos cuenta de que las observaciones 11,26,30,42,50,59,64,74 y 80 son puntos de balanceo.
+
+
+Las observaciones con hii grandes probablemente serán influenciales.
+
+
+\newpage
+
+\subsection{Análisis de influencia}
+
+Una observación es influencial cuando la distancia de Cook es mayor a 1 y cuando el valor absoluto del diagnóstico DFFITS es mayor a $2\sqrt{\frac{6}{80}}$.
+
+En nuestro caso el DFFITS debe ser mayor a 0.5477.
+
+
+```{r, fig.cap="Análisis de influencia", echo=FALSE}
+with(diagnostico, plot(abs(Dffits),
+                        xlab = "Observación", ylab = "Dffits",pch = 16))
+abline(h = 2*sqrt(6/80), col = "red")
+```
+
+Según la gráfica de DFFITS se encuentran 5 observaciones influenciales.
