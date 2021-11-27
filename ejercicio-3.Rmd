@@ -118,9 +118,9 @@ donde $r$ es el número de filas linealmente independientes de $\mathbf{L}$. Ent
 $$
 \begin{aligned}
 F_0 & = \frac{MSH}{MSE} \sim F_{2,74} \text{ bajo } H_0 \\
-    & = \text{`r estadistico`}
+    & = \text{`r round(estadistico, 4)`}
 \end{aligned}
 $$
 
-con lo que se obtiene un Valor P de `r pval`, por lo que se rechaza la hipótesis nula $H_0$.
+con lo que se obtiene un Valor P de `r format(round(pval, 4), scientific = FALSE)`, por lo que se rechaza la hipótesis nula $H_0$.
 
