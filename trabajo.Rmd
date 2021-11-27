@@ -37,7 +37,7 @@ base <- read.table("./data/base_32.txt", header = T) # Cargar base de datos
 \newpage
 \section{Ejercicio 1}
 Se tiene del texto que se desea estimar un modelo de regresión multiple que explique el riesgo de infección en términos de todas las variables predictoras, este modelo tendrá la forma
-$$y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} +  \beta_3x_{i3} + \beta_4x_{i4} +\beta_5x_{i5} + \varepsilon_i, \ \varepsilon_i \stackrel{iid}{\sim} N(0, \sigma^2);  \ 1 \leq i \leq 80$$
+$$y_i = \beta_0 + \beta_1X_{i1} + \beta_2X_{i2} +  \beta_3X_{i3} + \beta_4X_{i4} +\beta_5X_{i5} + \varepsilon_i, \ \varepsilon_i \stackrel{iid}{\sim} N(0, \sigma^2);  \ 1 \leq i \leq 80$$
 \subsection{Estimación del modelo, significancia e interpretación de coeficientes}
 **Estimación del modelo**
 
