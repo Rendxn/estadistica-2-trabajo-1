@@ -81,6 +81,7 @@ myAnova(modelo)%>%
 Haciendo el análisis de la tabla ANOVA se concluye que el modelo de regresión sí es significativo, puesto que su valor-p es menor a 0.05(2.82658e-09). Rechazando así $H_0$, concluyendo que el riesgo de infección depende de al menos una de las variables predictoras del modelo.
 \subsection{Cálculo de $R^2$}
 Para el cálculo de $R^2$ utilizaremos $R^2=\frac{SSR}{SST}$ y obtendremos un valor de $0.4743$, implica que un 47.43% de la variabilidad de la variable de respuesta es explicada por la regresión
+
 \section{Ejercicio 2}
 Las variables que tuvieron mayor valor P son:$X_3,X_4,X_5$\newline
 Para probar la significancia de este subconjunto de parametros, se utilizará el siguiente juego de hipotesis:$$H_0:\beta_3=\beta_4=\beta_5=0,vs\\H_1:algún\ \beta_j\ne0\ ,j=3,4,5$$ Para esto definiremos lo siguiente
@@ -90,9 +91,6 @@ De los cuales se obtiene $SSR(\beta_3,\beta_4,\beta_5|\beta_0,\beta_1,\beta_2)=S
 entonces se tiene que: $F_0=\frac{4.471}{0.9468}=4.722$ y se rechazará $H_0$ si $F_0>f_{0.05,3,70}$;$f_{0.05,3,70}=0.1167<F_0$ por tanto se rechaza $H_0$ y se concluye que al menos uno de estos parametros es signifactivo para la regresión
 
 
-
-
-```{r, child=c('Ejercicio4.Rmd')}
-
+```{r, child=c('ejercicio-3.Rmd', 'Ejercicio4.Rmd')}
 ```
 

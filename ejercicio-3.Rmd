@@ -1,0 +1,126 @@
+---
+title: "Ejercicio 3"
+author: "Santiago Rendón"
+date: "26/11/2021"
+output: pdf_document
+---
+
+<!-- Plantee una pregunta donde su solución implique el uso exclusivo de una prueba de hipótesis lineal -->
+<!-- general de la forma H0 : Lβ = 0 (solo se puede usar este procedimiento y no SSextra), donde -->
+<!-- especifique claramente la matriz L, el modelo reducido y la expresión para el estadístico de prueba. -->
+
+\section{Ejercicio 3: Prueba de hipótesis lineal general}
+
+Dado el modelo completo:
+
+$$
+Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 +  \beta_3 X_3 + \beta_4 X_4 +\beta_5 X_5 + \varepsilon
+$$
+
+Veamos si se puede reducir el modelo basado en una prueba de hipótesis.
+
+\subsection{Prueba de hipótesis lineal general}
+
+Sean las hipótesis:
+
+$$
+\begin{cases}
+  H_0: & \beta_2 - \beta_4 = 0, \quad \beta_3 - \beta_5 = 0 \\
+  H_1: & \beta_2 - \beta_4 \neq 0, \quad \beta_3 - \beta_5 \neq 0
+\end{cases}
+$$
+
+Podemos ver que la hipótesis nula $H_0$ tiene dos ecuaciones, por lo que la matriz $\mathbf{L}$ tendrá la forma $2 \times 6$.
+Reescribamos entonces la hipótesis nula $H_0$ como un sistema de ecuaciones $2 \times 2$:
+
+$$
+H_0: 
+\begin{cases}
+  \beta_2 - \beta_4 = 0 \\
+  \beta_3 - \beta_5 = 0
+\end{cases}
+$$
+En forma matricial se puede expresar como:
+
+$$
+\begin{bmatrix}
+  0 & 0 & 1 & 0 & -1 & 0 \\
+  0 & 0 & 0 & 1 & 0 & -1 \\
+\end{bmatrix}
+\begin{bmatrix}
+  \beta_0 \\
+  \beta_1 \\
+  \beta_2 \\
+  \beta_3 \\
+  \beta_4 \\
+  \beta_5 \\
+\end{bmatrix}
+= 
+\begin{bmatrix}
+  0 \\
+  0 \\
+  0 \\
+  0 \\
+  0 \\
+  0 \\
+\end{bmatrix}
+$$
+
+De la formulación anterior podemos identificar la matriz $\mathbf{L}$ y observar que sus filas son linealmente independientes.
+
+$$
+\mathbf{L} = 
+\begin{bmatrix}
+  0 & 0 & 1 & 0 & -1 & 0 \\
+  0 & 0 & 0 & 1 & 0 & -1 \\
+\end{bmatrix}
+$$
+\subsubsection{Modelo reducido}
+
+Entonces el **modelo reducido** para esta prueba de hipótesis lineal general, es:
+
+$$
+\begin{aligned}
+  Y & = \beta_0 + \beta_1 X_1 + \beta_2(X_2 + X_4) + \beta_3(X_3 + X_5) + \varepsilon \\
+  Y & = \beta_0 + \beta_1 X_1 + \beta_2 X_{2,4} + \beta_3 X_{3,5} + \varepsilon, \text{ donde } X_{2,4} = X_2 + X_4, \text{ y } X_{3,5} = X_3 + X_5 
+\end{aligned}
+$$
+
+```{r modelo-reducido, include = FALSE}
+datos.reducido <- base %>% mutate(X24 = X2 + X4, X35 = X3 + X5)
+modelo.reducido <- lm(Y ~ X1 + X24 + X35, datos.reducido)
+modelo.reducido.anova <- anova(modelo.reducido, modelo)
+estadistico <- modelo.reducido.anova$`F`[[2]]
+pval <- modelo.reducido.anova$`Pr(>F)`[[2]]
+```
+
+
+A este modelo se halla asociado la suma de cuadrados del error $SSE(X1, X_{2,4}, X_{3,5})$ con $n - 4$ grados de
+libertad, y la suma de cuadrados de regresión $SSR(X1, X_{2,4}, X_{3,5})$ con $3$ grados de libertad. Para probar la
+hipótesis dada es necesario comparar el modelo reducido (RM) vs. el modelo completo (FM) en términos de la razón del
+cuadrado medio de la diferencia de las sumas de cuadrados de los errores. Para esto, definamos primero:
+
+$$
+\begin{aligned}
+SSH & = SSE(RM) - SSE(FM) \\
+    & = SSR(FM) - SSR(RM) \\
+    & = SSE(X1, X_{2,4}, X_{3,5}) - SSE(X1, X2, X3, X4, X5) \\
+    & = SSR(X1, X2, X3, X4, X5) - SSR(X1, X_{2,4}, X_{3,5})
+\end{aligned}
+$$
+Con esto, definimos a $MSH$ como:
+
+$$
+MSH = \frac{SSH}{r}
+$$
+donde $r$ es el número de filas linealmente independientes de $\mathbf{L}$. Entonces el estadístico de prueba $F_0$ está dado por:
+ 
+$$
+\begin{aligned}
+F_0 & = \frac{MSH}{MSE} \sim F_{2,74} \text{ bajo } H_0 \\
+    & = \text{`r round(estadistico, 4)`}
+\end{aligned}
+$$
+
+con lo que se obtiene un Valor P de `r format(round(pval, 4), scientific = FALSE)`, por lo que se rechaza la hipótesis nula $H_0$.
+
